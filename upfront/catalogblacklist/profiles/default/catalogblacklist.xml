@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<blacklist>
+    <!-- Example blacklist -->
+    <!--
+    <type name="Document">
+        <index name="object_provides" />
+        <index name="Description" />
+    </type>
+    <type name="Folder">
+        <index name="object_provides" />
+    </type>
+    <type name="Event">
+        <index name="*" />
+    </type>
+    <interface name="Products.ATContentTypes.interfaces.IATFolder">
+        <index name="object_provides" />
+    </interface>
+    -->
+</blacklist>

@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <!-- Register an extension profile to make the product installable -->
+    <include package="Products.GenericSetup" file="meta.zcml" />
+    <genericsetup:registerProfile
+        name="default"
+        title="upfront.catalogblacklist"
+        description=""
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <adapter
+        factory=".exportimport.CatalogBlacklistXMLAdapter"
+        provides="Products.GenericSetup.interfaces.IBody"
+        for="upfront.catalogblacklist.interfaces.ICatalogBlacklist
+             Products.GenericSetup.interfaces.ISetupEnviron"
+        />  
+
+</configure>
+

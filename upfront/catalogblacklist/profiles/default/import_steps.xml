@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<import-steps>
+
+    <import-step 
+        id="upfront.catalogblacklist" 
+        handler="upfront.catalogblacklist.exportimport.importCatalogBlacklist"
+        title="Import Catalog Blacklist"
+        version="2011-04-17">
+        <dependency step="toolset"/>
+        Import Catalog Blacklist
+    </import-step>
+
+</import-steps>
