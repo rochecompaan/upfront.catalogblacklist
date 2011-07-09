@@ -29,7 +29,7 @@ class CatalogBlacklistXMLAdapter(XMLAdapterBase):
         for typenode in node.childNodes:
 
             # Skip over things we are not interested in
-            if typename.nodeName not in ('type', 'interface'):
+            if typenode.nodeName not in ('type', 'interface'):
                 continue
 
             tagname = typenode.tagName
@@ -54,7 +54,7 @@ def importCatalogBlacklist(context):
         return
 
     site = context.getSite()
-    tool = getToolByName(site, 'portal_blackwhitelist')
+    tool = getToolByName(site, 'portal_catalogblacklist')
     importer = queryMultiAdapter(
         (tool, context), IBody
     )
