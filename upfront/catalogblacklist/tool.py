@@ -1,6 +1,6 @@
 from types import StringTypes
 
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from AccessControl import ClassSecurityInfo
 from ComputedAttribute import ComputedAttribute
@@ -18,7 +18,7 @@ class CatalogBlacklist(UniqueObject, SimpleItem):
 
     implements(ICatalogBlacklist)
 
-    id = 'portal_catalogblacklist '
+    id = 'portal_catalogblacklist'
     meta_type = 'Catalog Blacklist Tool'
 
     security = ClassSecurityInfo()
@@ -32,8 +32,6 @@ class CatalogBlacklist(UniqueObject, SimpleItem):
         """ extend the blacklisted indexes for the given types or
             interfaces
         """
-        self._blacklisted_interfaces.setdefault(pt, [])
-
         if blacklisted_types is not None:
             for pt, indexnames in blacklisted_types.items():
                 self._blacklisted_types.setdefault(pt, [])
