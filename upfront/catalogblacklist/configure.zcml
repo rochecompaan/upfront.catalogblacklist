@@ -5,6 +5,7 @@
 
     <!-- Register an extension profile to make the product installable -->
     <include package="Products.GenericSetup" file="meta.zcml" />
+
     <genericsetup:registerProfile
         name="default"
         title="upfront.catalogblacklist"
