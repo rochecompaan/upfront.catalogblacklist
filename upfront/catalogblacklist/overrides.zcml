@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <adapter
+        for="Products.CMFCore.interfaces.ICatalogAware
+             Products.CMFPlone.interfaces.IPloneCatalogTool"
+        factory=".wrapper.IndexableObjectWrapper"
+        provides="plone.indexer.interfaces.IIndexableObject"
+        />
+
+</configure>
+
