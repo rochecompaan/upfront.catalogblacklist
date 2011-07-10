@@ -35,7 +35,9 @@ class CatalogBlacklist(UniqueObject, SimpleItem):
         if blacklisted_types is not None:
             for pt, indexnames in blacklisted_types.items():
                 self._blacklisted_types.setdefault(pt, [])
-                self._blacklisted_types[pt].extend(indexnames)
+                for name in indexnames:
+                    if name not in self._blacklisted_types[pt]:
+                        self._blacklisted_types[pt].append(name)
             self._blacklisted_types._p_changed = 1
 
         if blacklisted_interfaces is not None:
@@ -43,7 +45,9 @@ class CatalogBlacklist(UniqueObject, SimpleItem):
                 if isinstance(iface, StringTypes):
                     iface = resolve(iface)
                 self._blacklisted_interfaces.setdefault(iface, [])
-                self._blacklisted_interfaces[iface].extend(indexnames)
+                for name in indexnames:
+                    if name not in self._blacklisted_interfaces[iface]:
+                        self._blacklisted_interfaces[iface].append(name)
             self._blacklisted_interfaces._p_changed = 1
 
     security.declarePrivate('getBlackListedIndexesForObject')
@@ -59,7 +63,9 @@ class CatalogBlacklist(UniqueObject, SimpleItem):
         for iface, indexes in \
                 self._blacklisted_interfaces.items():                
             if iface.providedBy(object):
-                blacklisted.extend(indexes)
+                for indexname in indexes:
+                    if indexname not in blacklisted:
+                        blacklisted.append(indexname)
 
         return blacklisted
 
