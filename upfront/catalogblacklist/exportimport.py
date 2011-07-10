@@ -6,6 +6,8 @@ from Products.GenericSetup.utils import XMLAdapterBase, importObjects
 
 from upfront.catalogblacklist.interfaces import ICatalogBlacklist
 
+CATALOGBLACKLIST_XML = 'catalogblacklist.xml'
+
 class CatalogBlacklistXMLAdapter(XMLAdapterBase):
     """Import black- and whitelists"""
 
@@ -36,7 +38,7 @@ class CatalogBlacklistXMLAdapter(XMLAdapterBase):
             typename = typenode.getAttribute('name')  
 
             blacklist[tagname].setdefault(typename, [])
-            for index in type_or_interface.childNodes:
+            for index in typenode.childNodes:
                 if index.nodeName != 'index': continue
 
                 index_name = index.getAttribute('name')
@@ -49,7 +51,7 @@ class CatalogBlacklistXMLAdapter(XMLAdapterBase):
 def importCatalogBlacklist(context):
     """ Import catalog blacklist """
 
-    body = context.readDataFile('catalogblacklist.xml')
+    body = context.readDataFile(CATALOGBLACKLIST_XML)
     if body is None:
         return
 
