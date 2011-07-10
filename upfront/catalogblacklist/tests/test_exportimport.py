@@ -64,6 +64,8 @@ class TestExportImport(PloneTestCase.PloneTestCase):
         context = DummyImportContext(self.portal, self.portal.portal_setup)
         context._files[ CATALOGBLACKLIST_XML ] = _TEST1_XML
 
+        importCatalogBlacklist(context)
+
         self.assertEqual(
             self.catalogblacklist.getBlackListedIndexesForObject(
                 self.folder.doc),
