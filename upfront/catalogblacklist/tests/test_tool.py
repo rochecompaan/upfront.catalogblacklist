@@ -28,9 +28,9 @@ class TestCatalogBlacklist(PloneTestCase.PloneTestCase):
             'Document': blacklist
             }
         )
+        self.catalog.manage_catalogClear()
         self.folder.invokeFactory('Document', id='doc',
-            title='Foo', description='Bar')
-        self.catalog.unindexObject(self.folder.doc)
+            title='Doc', description='Doc')
 
     def assertResults(self, result, expect):
         # Verifies ids of catalog results against expected ids
@@ -50,6 +50,14 @@ class TestCatalogBlacklist(PloneTestCase.PloneTestCase):
             self.catalogblacklist.getBlackListedIndexesForObject(
                 self.folder.doc),
             blacklist)
+
+    def test_searchOnBlacklistIndexes(self):
+        self.assertResults(self.catalog(), [])
+        self.assertResults(self.catalog(portal_type='Document'), [])
+        self.assertResults(self.catalog(id='doc'), [])
+        self.assertResults(self.catalog(SearchableText='Doc'), ['doc'])
+        self.assertResults(self.catalog(Title='Doc'), ['doc'])
+        self.assertResults(self.catalog(review_state='private'), ['doc'])
 
 
 def test_suite():
